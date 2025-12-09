@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS clans (
+    id SERIAL PRIMARY KEY,
+    clanname TEXT NOT NULL UNIQUE,
+    owner_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS clan_members (
+    clan_id INTEGER NOT NULL REFERENCES clans(id) ON DELETE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY (clan_id, user_id)
+);
+
+CREATE TABLE IF NOT EXISTS clan_messages (
+    id SERIAL PRIMARY KEY,
+    clan_id INTEGER NOT NULL REFERENCES clans(id) ON DELETE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE SET NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_clan_messages_clan_time ON clan_messages (clan_id, created_at DESC);
