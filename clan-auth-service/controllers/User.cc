@@ -14,10 +14,11 @@ void User::login(const drogon::HttpRequestPtr &req,
     //...
     Json::Value ret;
     ret["result"]="ok";
-    ret["token"]=drogon::utils::getUuid();
+    ret["token"]=drogon::utils::getUuid(); 
     auto resp=drogon::HttpResponse::newHttpJsonResponse(ret);
     callback(resp);
 }
+
 void User::getInfo(const drogon::HttpRequestPtr &req,
                    std::function<void (const drogon::HttpResponsePtr &)> &&callback,
                    std::string userId,

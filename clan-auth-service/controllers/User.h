@@ -3,6 +3,7 @@
 #include <drogon/HttpController.h>
 #include <drogon/HttpRequest.h>
 #include <drogon/HttpResponse.h>
+#include <jsoncpp/json/json.h>
 
 using namespace drogon;
 
