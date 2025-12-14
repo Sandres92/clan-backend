@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: drogon_pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dragon
+      POSTGRES_PASSWORD: dragonpass
+      POSTGRES_DB: dragon_clans
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/datasudo
+      - ./db/init:/docker-entrypoint-initdb.d
+
+volumes:
+  pgdata:

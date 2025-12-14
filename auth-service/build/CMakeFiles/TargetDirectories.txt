@@ -1,0 +1,6 @@
+/home/vboxuser/Develop/CPlusPlus/Yandex/clan-backend/build/CMakeFiles/clan-backend.dir
+/home/vboxuser/Develop/CPlusPlus/Yandex/clan-backend/build/CMakeFiles/edit_cache.dir
+/home/vboxuser/Develop/CPlusPlus/Yandex/clan-backend/build/CMakeFiles/rebuild_cache.dir
+/home/vboxuser/Develop/CPlusPlus/Yandex/clan-backend/build/test/CMakeFiles/clan-backend_test.dir
+/home/vboxuser/Develop/CPlusPlus/Yandex/clan-backend/build/test/CMakeFiles/edit_cache.dir
+/home/vboxuser/Develop/CPlusPlus/Yandex/clan-backend/build/test/CMakeFiles/rebuild_cache.dir
