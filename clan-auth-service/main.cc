@@ -9,20 +9,13 @@ int main()
     // Set HTTP listener address and port
     drogon::app().addListener("0.0.0.0", 5555);
 
-    /*drogon::orm::PostgresConfig pgConfig;
-    pgConfig.name = "default";
-    pgConfig.host = "localhost";
-    pgConfig.port = 5432;
-    pgConfig.databaseName = "dragon_clans";
-    pgConfig.username = "dragon";
-    pgConfig.password = "dragonpass";
-    pgConfig.connectionNumber = 1;
+    // drogon::app().setLogLevel(trantor::Logger::kDebug);
 
-    // drogon::app().addDbClient(pgConfig);
+    /*// drogon::app().addDbClient(pgConfig);
     std::shared_ptr<drogon::orm::DbClient> client;
     try
     {
-        client = drogon::orm::DbClient::newPgClient("host=localhost port=5432 dbname=dragon_clans user=dragon password=dragonpass", 1);
+        client = drogon::orm::DbClient::newPgClient("host=localhost port=5432 dbname=dragon_clans user=dragon password=dragonpass", 1, );
         // пример запроса
         // client->execSqlAsync("SELECT 1", [](const drogon::orm::Result &r)
         //                     { std::cout << "DB query OK!\n"; });
@@ -41,15 +34,27 @@ int main()
                                 for (auto row : result)
                                 {
                                     std::cout << i++ << ": clan name is " << row["username"].as<std::string>() << std::endl;
-                                } 
+                                }
                                 std::cout << ": user name is " << std::endl; }, [](const drogon::orm::DrogonDbException &e)
                          { std::cerr << "error:" << e.base().what() << std::endl; });
     */
-   
+
+    drogon::orm::PostgresConfig pgConfig;
+    pgConfig.name = "default";
+    pgConfig.host = "localhost";
+    pgConfig.port = 5432;
+    pgConfig.databaseName = "dragon_clans";
+    pgConfig.username = "dragon";
+    pgConfig.password = "dragonpass";
+    pgConfig.connectionNumber = 1;
+
+    drogon::app().addDbClient(pgConfig);
+
     // Load config file
     // drogon::app().loadConfigFile("../config.json");
     // drogon::app().loadConfigFile("../config.yaml");
     // Run HTTP framework,the method will block in the internal event loop
     drogon::app().run();
+
     return 0;
 }

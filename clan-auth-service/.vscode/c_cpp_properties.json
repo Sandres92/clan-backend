@@ -2,16 +2,7 @@
     "configurations": [
         {
             "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**",       // все твои исходники
-                "/usr/local/include",          // Drogon
-                "/usr/include/jsoncpp"         // JsonCpp
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/g++",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "linux-gcc-x64"
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         }
     ],
     "version": 4
