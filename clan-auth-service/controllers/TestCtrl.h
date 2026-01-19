@@ -1,21 +1,22 @@
 #pragma once
 
 #include <drogon/HttpSimpleController.h>
+#include <drogon/nosql/RedisClient.h>
 
 using namespace drogon;
 
 class TestCtrl : public drogon::HttpSimpleController<TestCtrl>
 {
-  public:
-    void asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) override;
+public:
+  void asyncHandleHttpRequest(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) override;
 
-    PATH_LIST_BEGIN
-    //list path definitions here
+  PATH_LIST_BEGIN
+  // list path definitions here
 
-    //example
-    //PATH_ADD("/path","filter1","filter2",HttpMethod1,HttpMethod2...);
+  // example
+  // PATH_ADD("/path","filter1","filter2",HttpMethod1,HttpMethod2...);
 
-    PATH_ADD("/",Get,Post);
-    PATH_ADD("/test",Get);
-    PATH_LIST_END
+  PATH_ADD("/", Get, Post);
+  PATH_ADD("/test", Get);
+  PATH_LIST_END
 };

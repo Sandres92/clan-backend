@@ -53,9 +53,19 @@ namespace clan
 
                                      if (dbPassword == user.password)
                                      {
+                                        std::string token = drogon::utils::getUuid();
+                                        auto redis = drogon::app().getRedisClient();
+                                         std::string redisKey = "auth:token:" + token;
+
+                                        redis->execCommandAsync(
+                                            [](const drogon::nosql::RedisResult &r){ /* можно логировать успех */ },
+                                            [](const drogon::nosql::RedisException &e){ LOG_ERROR << "Redis error: " << e.what(); },
+                                            "SETEX %s %d %d", redisKey, "3600", std::to_string(row["id"].as<int>())  // row["id"] = user_id из БД
+                                        );
+
                                          Json::Value ret;
                                          ret["result"] = "ok";
-                                         ret["token"] = drogon::utils::getUuid();
+                                         ret["token"] = token;
 
                                          auto resp = HttpResponse::newHttpJsonResponse(ret);
                                          callback(resp);

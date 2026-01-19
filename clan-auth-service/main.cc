@@ -3,6 +3,7 @@
 #include <drogon/orm/DbClient.h>
 #include <drogon/orm/Exception.h>
 #include <drogon/orm/DbConfig.h>
+#include <drogon/nosql/RedisClient.h>
 
 int main()
 {
@@ -49,6 +50,18 @@ int main()
     pgConfig.connectionNumber = 1;
 
     drogon::app().addDbClient(pgConfig);
+
+    drogon::nosql::RedisClientPtr redis;
+    try
+    {
+        drogon::app().createRedisClient("127.0.0.1", 6379);
+        LOG_INFO << "Redis client created";
+    }
+    catch (const std::exception &e)
+    {
+        LOG_ERROR << "Redis error: " << e.what();
+        return 1;
+    }
 
     // Load config file
     // drogon::app().loadConfigFile("../config.json");
